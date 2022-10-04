@@ -1,0 +1,36 @@
+name: edey
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  flutter_screenutil: ^5.5.4
+  firebase_auth: ^3.9.0
+  firebase_core: ^1.22.0
+  cloud_firestore: ^3.5.0
+  cloud_functions: ^3.3.9
+  # geolocator: ^9.0.2
+  # geocoding: ^2.0.5
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  lints: 2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - lib/assets/background.png
+    - lib/assets/facebook logo.png
+    - lib/assets/tweeter logo.png
+    - lib/assets/Google logo.png
+    - lib/assets/eDey x1.png
+    - lib/assets/eDey x2.png
+    - lib/assets/eDey_welcome icon.png
+  uses-material-design: true
