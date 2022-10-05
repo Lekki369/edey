@@ -181,7 +181,8 @@ class ManagerLoginView extends GetView<ManagerLoginController> {
                                       _emailText.text, _passwordText.text);
                                 },
                           child: controller.isLoading.value
-                              ? const CircularProgressIndicator()
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : Text(
                                   'Login',
                                   style: TextStyle(

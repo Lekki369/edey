@@ -226,7 +226,8 @@ class ManagerRegisterView extends GetView<ManagerRegisterController> {
                                   );
                                 },
                           child: controller.isLoading.value
-                              ? const CircularProgressIndicator()
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : Text(
                                   'Register',
                                   style: TextStyle(

@@ -181,7 +181,8 @@ class UserLoginView extends GetView<UserLoginController> {
                                       _emailText.text, _passwordText.text);
                                 },
                           child: controller.isLoading.value
-                              ? const CircularProgressIndicator()
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : Text(
                                   'Login',
                                   style: TextStyle(

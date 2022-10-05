@@ -180,7 +180,8 @@ class UserRegisterView extends GetView<UserRegisterController> {
                                       _emailText.text, _passwordText.text);
                                 },
                           child: controller.isLoading.value
-                              ? const CircularProgressIndicator()
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : Text(
                                   'Sign Up',
                                   style: TextStyle(
