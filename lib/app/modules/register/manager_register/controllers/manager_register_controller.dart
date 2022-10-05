@@ -28,6 +28,14 @@ class ManagerRegisterController extends GetxController {
           email: email.trim(), password: password.trim());
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
+        case "network-request-failed":
+          Get.snackbar(
+            'No Internet',
+            'Check your network',
+            colorText: Colors.red,
+            backgroundColor: const Color.fromARGB(255, 58, 41, 250),
+          );
+          break;
         case "wrong-password":
           Get.defaultDialog(
             title: 'Info',
