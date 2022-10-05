@@ -2,6 +2,7 @@
 
 import 'package:edey/app/modules/home/home_user/views/user_drawer.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -212,7 +213,39 @@ class FillingStation extends GetView<HomeUserView> {
             height: 50.h,
             width: double.maxFinite,
             color: Colors.amber,
-          )
+          ),
+          SizedBox(
+            height: 5.h,
+          ),
+          Expanded(
+              child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {
+                    print('object $index');
+                  },
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: CircularProgressIndicator(),
+                    title: Text('Station'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('data'),
+                        Text('data'),
+                        Text('data'),
+                        Text('data'),
+                        Text('data'),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ))
         ],
       ),
     );
