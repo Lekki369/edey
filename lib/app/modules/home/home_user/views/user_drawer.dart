@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../controllers/home_user_controller.dart';
 
 class UserDrawer extends GetView<HomeUserController> {
@@ -57,7 +58,9 @@ class UserDrawer extends GetView<HomeUserController> {
               children: [
                 TextButton(
                   // TODO: managerhomepage
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAllNamed(Routes.HOME_MANAGER);
+                  },
                   child: const Text(
                     'Switch to Manager',
                     style: TextStyle(
@@ -75,7 +78,7 @@ class UserDrawer extends GetView<HomeUserController> {
               padding: EdgeInsets.only(right: 35.0.w),
               child: Column(
                 children: [
-                  GestureDetector(
+                  InkWell(
                     onTap: () async {
                       await Get.defaultDialog(
                         titlePadding: const EdgeInsets.all(0),
@@ -107,7 +110,7 @@ class UserDrawer extends GetView<HomeUserController> {
                                   ],
                                 ),
                                 SizedBox(height: 67.h),
-                                GestureDetector(
+                                InkWell(
                                   child: Container(
                                       height: 58.h,
                                       width: 335.w,
@@ -140,7 +143,7 @@ class UserDrawer extends GetView<HomeUserController> {
                                       )),
                                 ),
                                 SizedBox(height: 43.h),
-                                GestureDetector(
+                                InkWell(
                                   child: Container(
                                       height: 58.h,
                                       width: 335.w,
@@ -196,7 +199,7 @@ class UserDrawer extends GetView<HomeUserController> {
                   SizedBox(
                     height: 21.h,
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () async {
                       await Get.defaultDialog(
                         titlePadding: const EdgeInsets.all(0),
@@ -281,7 +284,7 @@ class UserDrawer extends GetView<HomeUserController> {
                   SizedBox(
                     height: 21.h,
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () async {
                       await Get.defaultDialog(
                         titlePadding: const EdgeInsets.all(0),
@@ -385,7 +388,7 @@ class UserDrawer extends GetView<HomeUserController> {
                   SizedBox(
                     height: 21.h,
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -405,7 +408,7 @@ class UserDrawer extends GetView<HomeUserController> {
                   SizedBox(
                     height: 21.h,
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -425,7 +428,7 @@ class UserDrawer extends GetView<HomeUserController> {
                   SizedBox(
                     height: 21.h,
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () async {
                       await Get.defaultDialog(
                         titlePadding: const EdgeInsets.all(0),
