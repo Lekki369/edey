@@ -59,7 +59,7 @@ class UserDrawer extends GetView<HomeUserController> {
                 TextButton(
                   // TODO: managerhomepage
                   onPressed: () {
-                    Get.offAllNamed(Routes.HOME_MANAGER);
+                    Get.offAllNamed(Routes.MANAGER_LOGIN);
                   },
                   child: const Text(
                     'Switch to Manager',
