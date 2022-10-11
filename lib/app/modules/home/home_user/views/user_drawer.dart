@@ -12,7 +12,7 @@ class UserDrawer extends GetView<HomeUserController> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.of(context).size.width * 0.6,
+      width: MediaQuery.of(context).size.width * 0.7,
       backgroundColor: const Color.fromARGB(184, 187, 222, 251),
       elevation: 5,
       child: Padding(

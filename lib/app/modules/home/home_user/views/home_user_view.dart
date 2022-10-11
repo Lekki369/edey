@@ -175,7 +175,7 @@ class FindFuel extends GetView<HomeUserController> {
                       width: double.maxFinite,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: Colors.transparent,
                         border: Border.all(
                           color: const Color.fromARGB(255, 51, 41, 250),
                           width: 2.w,
