@@ -61,7 +61,6 @@ class UserDrawer extends GetView<HomeUserController> {
                 TextButton(
                   onPressed: () async {
                     Get.offAllNamed(Routes.MANAGER_LOGIN);
-                    await FirebaseAuth.instance.signOut();
                   },
                   child: const Text(
                     'Switch to Manager',
