@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:edey/app/modules/home/home_user/views/Loaction.dart';
 import 'package:edey/app/modules/home/home_user/views/user_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class HomeUserView extends GetView<HomeUserController> {
   final List<Widget> _widgetOptions = [
     FindFuel(),
     const FillingStation(),
-    const Text('3'),
+    LocationPage(),
     const Text('4')
   ];
   @override
@@ -124,6 +125,7 @@ class FindFuel extends GetView<HomeUserController> {
               width: 300.w,
               height: 257.h,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DropdownButtonFormField(
                     decoration: InputDecoration(
@@ -136,13 +138,13 @@ class FindFuel extends GetView<HomeUserController> {
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: const Color.fromARGB(255, 51, 41, 250),
-                          width: 1.3.w,
+                          width: 2.w,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: const Color.fromARGB(255, 51, 41, 250),
-                          width: 1.3.w,
+                          width: 2.w,
                         ),
                       ),
                     ),
@@ -166,13 +168,34 @@ class FindFuel extends GetView<HomeUserController> {
                       print(controller.selecteditem);
                     },
                   ),
-                  Spacer(),
-                  Container(
-                    width: double.maxFinite,
-                    height: 50,
-                    color: Colors.amberAccent,
+                  InkWell(
+                    onTap: () => controller.selectedIndex.value = 2,
+                    child: Container(
+                      padding: EdgeInsets.all(11),
+                      width: double.maxFinite,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 51, 41, 250),
+                          width: 2.w,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Your Location',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Icon(Icons.location_on_outlined)
+                        ],
+                      ),
+                    ),
                   ),
-                  Spacer(),
                   Container(
                     width: double.maxFinite,
                     height: 50,
@@ -216,39 +239,35 @@ class FillingStation extends GetView<HomeUserView> {
             width: double.maxFinite,
             padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 8.h),
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r),
               color: Colors.grey.shade400,
             ),
-            child: Center(
-              child: InkWell(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.done,
-                        cursorColor: Colors.grey.shade600,
-                        // controller: ,
-                        decoration: InputDecoration(
-                          border:
-                              UnderlineInputBorder(borderSide: BorderSide.none),
-                          prefixIcon: Icon(
-                            Icons.search_outlined,
-                            size: 30.sp,
-                            color: Colors.grey.shade600,
-                          ),
-                          suffixIcon: Icon(
-                            Icons.local_gas_station_rounded,
-                            size: 30.sp,
-                            color: Colors.grey.shade600,
-                          ),
-                          hintText: 'Search Station...',
-                          isDense: true,
-                        ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    cursorColor: Colors.grey.shade600,
+                    // controller: ,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(borderSide: BorderSide.none),
+                      prefixIcon: Icon(
+                        Icons.search_outlined,
+                        size: 30.sp,
+                        color: Colors.grey.shade600,
                       ),
+                      suffixIcon: Icon(
+                        Icons.local_gas_station_rounded,
+                        size: 30.sp,
+                        color: Colors.grey.shade600,
+                      ),
+                      hintText: 'Search Station...',
+                      isDense: true,
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -367,6 +386,99 @@ class FillingStation extends GetView<HomeUserView> {
           ),
         )
       ],
+    );
+  }
+}
+
+class LocationPage extends GetView<HomeUserView> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25.w),
+      child: Column(
+        children: [
+          Container(
+            height: 50.h,
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 8.h),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r),
+              color: Colors.grey.shade400,
+            ),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              cursorColor: Colors.grey.shade600,
+              // controller: ,
+              decoration: InputDecoration(
+                border: UnderlineInputBorder(borderSide: BorderSide.none),
+                prefixIcon: Icon(
+                  Icons.search_outlined,
+                  size: 30.sp,
+                  color: Colors.grey.shade600,
+                ),
+                suffixIcon: Icon(
+                  Icons.local_gas_station_rounded,
+                  size: 30.sp,
+                  color: Colors.grey.shade600,
+                ),
+                hintText: 'Search Station...',
+                isDense: true,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Column(
+              children: [
+                Locations('Your Area', Icons.location_on_outlined),
+                Locations('Map', Icons.map_outlined),
+                Locations('Home', Icons.home_outlined),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(top: 10.h),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10),
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey.shade600,
+                          width: 1.5.w,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.history,
+                          size: 25.sp,
+                          color: Colors.grey.shade600,
+                        ),
+                        SizedBox(width: 10.w),
+                        Text(
+                          'Location Hstory',
+                          style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 18.sp),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
