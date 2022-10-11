@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class UserDrawer extends GetView<HomeUserController> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: MediaQuery.of(context).size.width * 0.6,
       backgroundColor: const Color.fromARGB(184, 187, 222, 251),
       elevation: 5,
       child: Padding(
@@ -57,9 +59,9 @@ class UserDrawer extends GetView<HomeUserController> {
             Row(
               children: [
                 TextButton(
-                  // TODO: managerhomepage
-                  onPressed: () {
+                  onPressed: () async {
                     Get.offAllNamed(Routes.MANAGER_LOGIN);
+                    await FirebaseAuth.instance.signOut();
                   },
                   child: const Text(
                     'Switch to Manager',
