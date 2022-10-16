@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:search_map_location/search_map_location.dart';
 
 import '../controllers/home_user_controller.dart';
 import 'user_appbar.dart';
@@ -184,13 +185,14 @@ class FindFuel extends GetView<HomeUserController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Your Location',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                          Obx(() => Text(
+                                controller
+                                    .locationController.selectedLocation.value,
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )),
                           Icon(Icons.location_on_outlined)
                         ],
                       ),
@@ -390,7 +392,7 @@ class FillingStation extends GetView<HomeUserView> {
   }
 }
 
-class LocationPage extends GetView<HomeUserView> {
+class LocationPage extends GetView<HomeUserController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -405,33 +407,42 @@ class LocationPage extends GetView<HomeUserView> {
               borderRadius: BorderRadius.circular(5.r),
               color: Colors.grey.shade400,
             ),
-            child: TextField(
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              cursorColor: Colors.grey.shade600,
-              // controller: ,
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(borderSide: BorderSide.none),
-                prefixIcon: Icon(
-                  Icons.search_outlined,
-                  size: 30.sp,
-                  color: Colors.grey.shade600,
-                ),
-                suffixIcon: Icon(
-                  Icons.local_gas_station_rounded,
-                  size: 30.sp,
-                  color: Colors.grey.shade600,
-                ),
-                hintText: 'Search Station...',
-                isDense: true,
-              ),
+            child: SearchLocation(
+              apiKey: '',
             ),
+            // child: TextField(
+            //   keyboardType: TextInputType.text,
+            //   textInputAction: TextInputAction.done,
+            //   cursorColor: Colors.grey.shade600,
+            //   // controller: ,
+            //   decoration: InputDecoration(
+            //     border: UnderlineInputBorder(borderSide: BorderSide.none),
+            //     prefixIcon: Icon(
+            //       Icons.search_outlined,
+            //       size: 30.sp,
+            //       color: Colors.grey.shade600,
+            //     ),
+            //     suffixIcon: Icon(
+            //       Icons.local_gas_station_rounded,
+            //       size: 30.sp,
+            //       color: Colors.grey.shade600,
+            //     ),
+            //     hintText: 'Search Station...',
+            //     isDense: true,
+            //   ),
+            // ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               children: [
-                Locations('Your Area', Icons.location_on_outlined),
+                InkWell(
+                  onTap: () {
+                    controller.locationController.currentLocation();
+                    controller.selectedIndex.value = 0;
+                  },
+                  child: Locations('Your Area', Icons.location_on_outlined),
+                ),
                 Locations('Map', Icons.map_outlined),
                 Locations('Home', Icons.home_outlined),
               ],

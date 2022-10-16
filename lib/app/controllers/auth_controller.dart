@@ -1,4 +1,6 @@
+import 'package:edey/app/controllers/location.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:get/get.dart';
 
 import '../routes/app_pages.dart';
@@ -9,6 +11,7 @@ class AuthController extends GetxController {
 
   @override
   void onReady() {
+    Get.put(LocationController());
     _user = Rx<User?>(_auth.currentUser);
     _user.bindStream(_auth.userChanges());
     ever(_user, initialLoading);
