@@ -32,22 +32,36 @@ class LocationController extends GetxController {
       return Future.error('Location Services Disable');
     }
     permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('error');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error('error');
-    }
 
-    streamSubscription =
-        Geolocator.getPositionStream().listen((Position position) {
-      latitude.value = position.latitude.toString();
-      longitude.value = position.longitude.toString();
-      getAddresFromLatLong(position);
-    });
+    switch (permission) {
+      case LocationPermission.denied:
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          return Future.error('error');
+        }
+        break;
+      case LocationPermission.deniedForever:
+        return Future.error('error');
+
+      case LocationPermission.whileInUse:
+        streamSubscription =
+            Geolocator.getPositionStream().listen((Position position) {
+          latitude.value = position.latitude.toString();
+          longitude.value = position.longitude.toString();
+          getAddresFromLatLong(position);
+        });
+        break;
+      case LocationPermission.always:
+        streamSubscription =
+            Geolocator.getPositionStream().listen((Position position) {
+          latitude.value = position.latitude.toString();
+          longitude.value = position.longitude.toString();
+          getAddresFromLatLong(position);
+        });
+        break;
+      case LocationPermission.unableToDetermine:
+        return Future.error('error');
+    }
   }
 
   Future<void> getAddresFromLatLong(Position position) async {
