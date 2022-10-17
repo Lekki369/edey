@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class LocationController extends GetxController {
   var latitude = ''.obs;
   var longitude = ''.obs;
-  var address = ''.obs;
+  var address = 'Getting Address'.obs;
   var selectedLocation = 'Your Location'.obs;
   late StreamSubscription<Position> streamSubscription;
 
