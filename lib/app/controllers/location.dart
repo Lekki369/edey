@@ -15,10 +15,8 @@ class LocationController extends GetxController {
     selectedLocation = address;
   }
 
-  void searchedLocation() {}
-
   @override
-  void onInit() async {
+  void onReady() async {
     getLocation();
     super.onInit();
   }
@@ -29,7 +27,9 @@ class LocationController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       await Geolocator.openLocationSettings();
-      return Future.error('Location Services Disable');
+      if (!serviceEnabled) {
+        return;
+      }
     }
     permission = await Geolocator.checkPermission();
 
@@ -68,6 +68,6 @@ class LocationController extends GetxController {
     List<Placemark> placeMark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placeMark[0];
-    address.value = place.street.toString();
+    address.value = place.locality.toString();
   }
 }
