@@ -399,17 +399,10 @@ class LocationPage extends GetView<HomeUserController> {
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       child: Column(
         children: [
-          Container(
-            height: 50.h,
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 8.h),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.r),
-              color: Colors.grey.shade400,
-            ),
-            child: SearchLocation(
-              apiKey: '',
-            ),
+          SearchLocation(
+            iconColor: const Color.fromARGB(255, 51, 41, 250),
+            hasClearButton: true,
+            apiKey: '',
             // child: TextField(
             //   keyboardType: TextInputType.text,
             //   textInputAction: TextInputAction.done,
