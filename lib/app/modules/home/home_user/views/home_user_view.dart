@@ -22,11 +22,7 @@ class HomeUserView extends GetView<HomeUserController> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        bool trigger = true;
-        controller.selectedIndex.value = 0;
-        return !trigger;
-      },
+      onWillPop: () async => controller.backButton(),
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 187, 222, 251),
         appBar: AppBar(
