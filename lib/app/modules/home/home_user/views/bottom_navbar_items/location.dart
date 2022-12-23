@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../controllers/home_user_controller.dart';
+import '../../controllers/home_user_controller.dart';
 
 class Locations extends GetView<HomeUserController> {
   final String _name;
