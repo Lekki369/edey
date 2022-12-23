@@ -6,19 +6,21 @@ import 'package:get/get.dart';
 import '../../helper.dart';
 
 class ManagerLoginController extends GetxController {
-  var isVisible = true.obs;
+  Rx<bool> isVisible = true.obs;
+  Rx<bool> isLoading = false.obs;
 
-  var isLoading = false.obs;
   final TextStyle _style = TextStyle(
     fontSize: 25.sp,
     fontWeight: FontWeight.w600,
     color: const Color.fromARGB(255, 58, 41, 250),
   );
+
   final TextStyle _style2 = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
+
   void visible() {
     isVisible.value = !isVisible.value;
   }
@@ -30,7 +32,6 @@ class ManagerLoginController extends GetxController {
           email: email.trim(), password: password.trim());
     } on FirebaseAuthException catch (e) {
       problemInfo(e.code, _style, _style2);
-
       isLoading.value = false;
     }
   }
